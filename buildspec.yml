@@ -6,8 +6,10 @@ phases:
       java: corretto8
   pre_build:
     commands:
+      - echo "Logging in to CodeArtifact"
+      - aws codeartifact login --tool maven --repository nextwork-devops-cicd --domain nextwork
       - echo Initializing environment
-      - export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain nextwork --domain-owner 123456789012 --region us-east-2 --query authorizationToken --output text`
+      - export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain nextwork --domain-owner 123456789012 --region eu-west-2 --query authorizationToken --output text`
 
   build:
     commands:
